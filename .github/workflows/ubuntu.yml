@@ -47,8 +47,8 @@ jobs:
         cd build
         ctest -C $BUILD_TYPE -VV
 
-    - name: Code coverage using Codecov 
-      run: bash <(curl -s https://codecov.io/bash) 
+#     - name: Code coverage using Codecov 
+#       run: bash <(curl -s https://codecov.io/bash) 
     - name: Upload coverage reports to Codecov with GitHub Action
       uses: codecov/codecov-action@v3
     - name: install project
