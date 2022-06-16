@@ -38,7 +38,9 @@ jobs:
 
     - name: configure
       run: cmake -Bbuild -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/$INSTALL_LOCATION -DProject_ENABLE_CODE_COVERAGE=1
-      
+    
+    - name: build
+      run: cmake --build build --config $BUILD_TYPE -j4      
 
     - name: run tests
       run: |
@@ -48,8 +50,7 @@ jobs:
 
 #     - name: Code coverage using Codecov 
 #       run: bash <(curl -s https://codecov.io/bash) 
-    - name: build
-      run: cmake --build build --config $BUILD_TYPE -j4
+
 
 
     - name: install project
