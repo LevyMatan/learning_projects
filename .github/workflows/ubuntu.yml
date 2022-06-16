@@ -40,10 +40,11 @@ jobs:
       run: cmake -Bbuild -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/$INSTALL_LOCATION -DProject_ENABLE_CODE_COVERAGE=1
       
 
-#     - name: run tests
-#       run: |
-#         cd build
-#         ctest -C $BUILD_TYPE -VV
+    - name: run tests
+      run: |
+        cd build
+        ctest -C $BUILD_TYPE -VV
+        cd .. && (bash -c "find . -type f -name '*.gcno' -exec gcov -pb {} +" || true)
 
 #     - name: Code coverage using Codecov 
 #       run: bash <(curl -s https://codecov.io/bash) 
@@ -54,7 +55,7 @@ jobs:
     - name: install project
       run: cmake --build build --target install --config Debug 
 
-    - name: run coverage
-      run: make coverage
+#     - name: run coverage
+#       run: make coverage
     - name: Upload coverage reports to Codecov with GitHub Action
       uses: codecov/codecov-action@v3
