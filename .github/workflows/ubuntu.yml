@@ -42,6 +42,10 @@ jobs:
     - name: build
       run: cmake --build build --config $BUILD_TYPE -j4
 
+    -name: run coverage
+     run: |
+        cd build
+        make coverage
     - name: run tests
       run: |
         cd build
